@@ -13,7 +13,7 @@ variables:
   dockerRegistryServiceConnection: '7de6c156-f49c-4ed3-b68b-b724f97cd48d'
   imageRepository: 'manideepmsimpledockerimage'
   containerRegistry: 'manideepreg.azurecr.io'
-  dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
+  dockerfilePath: './Dockerfile'
   tag: '$(Build.BuildId)'
 
   # Agent VM image name
