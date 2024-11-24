@@ -38,3 +38,23 @@ stages:
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
+    - task: AzureCLI@2
+      displayName: Deploy Container Instance
+      inputs:
+        azureSubscription: 'aciserviceconnection'
+        scriptType: bash 
+        scriptLocation: inlineScript 
+        inlineScript: | 
+          echo "Creating Azure Container Instance..." 
+          az container create \ 
+            --resource-group 'bharathrs' \ 
+            --name 'mcontainer' \ 
+            --image 'manideepreg'/'manideepmsimpledockerimage' \ 
+            --cpu '1vcpu' \ 
+            --memory 1.5GiB \ 
+            --location 'UKSouth' \ 
+            --registry-login-server 'manideepreg' \ 
+            --registry-username 'manideep412m' \ 
+            --registry-password 'Manideep@412' \ 
+            --dns-name-label 'mcontainer' \ 
+            --ports 80
