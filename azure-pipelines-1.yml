@@ -33,4 +33,10 @@ stages:
     - task: DockerInstaller@0
       inputs:
         dockerVersion: '17.09.0-ce'
-    
+    - task: DockerCompose@1
+      inputs:
+        containerregistrytype: 'Azure Container Registry'
+        azureSubscription: 'aciserviceconnection'
+        azureContainerRegistry: '{"loginServer":"manideepreg.azurecr.io", "id" : "/subscriptions/94b32def-28a7-475d-bbe4-bfa09615697a/resourceGroups/bharathrs/providers/Microsoft.ContainerRegistry/registries/manideepreg"}'
+        dockerComposeFile: '**/docker-compose.yml'
+        action: 'Build services'
